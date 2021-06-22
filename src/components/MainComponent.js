@@ -15,7 +15,7 @@ class Main extends Component {
 	}
 
     // method for click on
-    onCampsiteSelectgit (campsiteId){
+    onCampsiteSelect(campsiteId){
     this.setState({selectedCampsite: campsiteId});
   }
 
