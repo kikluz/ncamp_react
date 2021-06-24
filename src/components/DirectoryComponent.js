@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 
-function RenderDirectoryItem({ campsite, onClick }) {
+function RenderDirectoryItem({ campsite }) {
   return (
-    <Card onClick={() => onClick(campsite.id)}>
+    <Card>
       <CardImg with='100%' src={campsite.image} alt={campsite.name} />
       <CardImgOverlay>
         <CardTitle>{campsite.name}</CardTitle>
@@ -18,7 +18,7 @@ function Directory(props) {
 
     return (
       <div key={campsite.id} className="col-md-5 m-1">
-        <RenderDirectoryItem campsite={campsite} onClick={props.onClick} />
+        <RenderDirectoryItem campsite={campsite} />
       </div>
 
     );
