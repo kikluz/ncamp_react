@@ -11,6 +11,8 @@ import Footer from './FooterComponent';
 import Contact from './ContactComponent';
 import Home from './HomeComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import About from './AboutComponent';
+
 
 
 // set the local state in App.js so we have data from campsites.js inside App.js
@@ -53,9 +55,12 @@ class Main extends Component {
 				<Header />
 				<Switch>
 					<Route path='/home' component={HomePage} />
+					{/* render is for passing the this.state. */}
 					<Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
 					<Route path='/directory/:campsiteId' component={CampsiteWithId} />
 					<Route exact path='/contactus' component={Contact} />
+					{/* Update MainComponent to integrate the AboutComponent into the single page application. */}
+					<Route exact path='/aboutus' render={() => <About partners={this.state.partners} />} />
 					<Redirect to ='/Home' /> 
 				</Switch>
 				<Footer />
