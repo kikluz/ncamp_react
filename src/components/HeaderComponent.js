@@ -1,5 +1,8 @@
 import React, { Component }  from 'react';
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
+import { 
+    Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Modal, ModalBody, ModalHeader, Button,
+    Form, FormGroup, Label, Input
+ } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
@@ -7,16 +10,35 @@ class Header extends Component {
     constructor(props) {
         super(props);
 
-        this.toggleNav = this.toggleNav.bind(this);
         this.state = {
-          isNavOpen: false
+          isNavOpen: false,
+          isModalOpen: false
         };
+
+        this.toggleNav = this.toggleNav.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.handleLogin = this.handleLogin.bind(this)
     }
 
     toggleNav() {
         this.setState({
             isNavOpen: !this.state.isNavOpen
         });
+    }
+    // creat a methos for toggleModal, bind method in the constructor
+    toggleModal() {
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        });
+    }
+
+    // setup the handleLogin method 
+    handleLogin(event){
+        alert(`Username: ${this.username.value} password: ${this.password.value} remember: ${this.remember.checked}`);
+        // closed the model using the toggle method 
+        this.toggleModal();
+        // stop the entire page to render in the browser, bind handler in the constructor
+        event.preventDefault();
     }
 
     render() {
@@ -60,9 +82,45 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                             </Nav>
+                            {/* add a buttom to the navbar */}
+                            <span className="navBar-text ml-auto">
+                                <Button outline onClick={this.toggleModal}>
+                                    <i className="fa fa-sign-in fa-lg" /> Login
+                                </Button>
+                            </span>
                         </Collapse>
                     </div>
                 </Navbar>
+                {/* if its set false that would be close if its true modal will be visible*/}
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    <ModalBody>
+                         <Form onSubmit={this.handleLogin}>
+                            <FormGroup>
+                                <Label htmlFor="username">Username</Label>
+                                <Input type="text" id="username" name="username" 
+                                // add attribute and setup a callback fucntion, Value to the input is passed,
+                                // define a propery for each one  and set the value of propery to the value of input field
+                                innerRef={input => this.username = input}/>
+                            </FormGroup>
+
+                            <FormGroup>
+                                <Label htmlFor="password">Password</Label>
+                                <Input type="tepasswordxt" id="password" name="password" 
+                                innerRef={input => this.password = input}/>
+                            </FormGroup>
+                            {/* required check and inut inside Label */}
+                            <FormGroup check>
+                                <Label check>
+                                <Input type="checkbox" name="remember" 
+                                innerRef={input => this.remember = input}/>
+                                Remember me
+                                </Label>  
+                            </FormGroup>
+                            <Button type="submit" value="submit" color="primary">Login</Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
             </React.Fragment>
         );
     }
