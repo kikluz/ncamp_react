@@ -9,6 +9,8 @@ import {
 import { Control, LocalForm, Errors } from  'react-redux-form';
 import { Link } from 'react-router-dom';
 
+// Test from branch git week_5
+
 // validation logic
 // this function recives a value as an argument, All form input are string
 // chack for val if val is flasy, chech length is greater then 0 
