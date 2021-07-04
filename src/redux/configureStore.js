@@ -3,7 +3,6 @@ import { Campsites } from './campsites';
 import { Comments } from './comments';
 import { Partners } from './partners';
 import { Promotions } from './promotions';
-import { Reducer } from './reducer';
 
 export const ConfigureStore = () => {
     const store = createStore(
