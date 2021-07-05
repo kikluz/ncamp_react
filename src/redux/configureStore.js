@@ -16,5 +16,4 @@ export const ConfigureStore = () => {
 
     return store;
 };
-
 // delete redux/Reducer.js file no longer use it 
