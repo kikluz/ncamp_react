@@ -10,6 +10,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect} from 'react-redux';
 import About from './AboutComponent';
 import { Connect } from 'react-redux';
+import { addComment } from '../redux/ActionCreators';
 
 // get the state from from redux by setup the map state to props
 // with take the state as an arguement
@@ -24,6 +25,11 @@ const mapStateToProps = state => {
 
 	}
 }
+
+
+const mapDispatchToProps = {
+    addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text))
+};
 
 // set the local state in App.js so we have data from campsites.js inside App.js
 class Main extends Component {
@@ -47,6 +53,7 @@ class Main extends Component {
                 <CampsiteInfo 
                     campsite={this.props.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
                     comments={this.props.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+					addComment={this.props.addComment}
                 />
             );
         };  
@@ -71,4 +78,4 @@ class Main extends Component {
 	};
 }
 // this export its for this entires file
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

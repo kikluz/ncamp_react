@@ -43,7 +43,7 @@ function RenderCampsite({ campsite }) {
 	)
 }
 
-function RenderComments({ comments }) {
+function RenderComments({comments, addComment, campsiteId}) {
 	if (comments) {
 		return (
 			<div classNam="col-md5 m-1">
@@ -60,7 +60,7 @@ function RenderComments({ comments }) {
 					);
 				})}
 
-				<CommentForm />
+				<CommentForm campsiteId={campsiteId} addComment={addComment} />
 			<br />	
 			</div>
 			
@@ -86,7 +86,11 @@ function CampsiteInfo(props) {
         </div>
 				<div className="row">
 					<RenderCampsite campsite={props.campsite} />
-					<RenderComments comments={props.comments} />
+					<RenderComments 
+						 comments={props.comments}
+						 addComment={props.addComment}
+						 campsiteId={props.campsite.id}
+					 />
 					
 				</div>
 			</div>
@@ -118,11 +122,8 @@ function CampsiteInfo(props) {
 
 	 // Method to handle form summition, changed the object from event to values
 	 handleSumit(values){
-    // removed the this.state to values 
-    console.log('Current state is: ' + JSON.stringify(values));
-        alert('Current state is: ' + JSON.stringify(values));
-        // we stop refresh the entire page, need to bind this event in the custroctor 
-        // removed event.preventDefault(); so redux will handle for us 
+	this.toggleModal();
+	this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
 }
 
 	render() {
