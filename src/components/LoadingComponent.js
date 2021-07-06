@@ -1,5 +1,6 @@
 // waitin for data to be load it from the server so show a load spinner
 import React from 'react';
+
 export const Loading = () => {
     return (
         <div className="col">

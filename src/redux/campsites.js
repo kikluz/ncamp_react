@@ -1,11 +1,19 @@
-import { CAMPSITES } from '../shared/campsites';
-// export it 
-// Initialize a variable, first argument state  assigned, second parameter it take the action Object
-export const Campsites = (state =  CAMPSITES, action) => {
-    // Check Any on the action type in the match 
+import * as ActionTypes from './ActionTypes';
+
+export const Campsites = (state = {
+        isLoading: true,
+        errMess: null,
+        campsites: []
+    }, action) => {
     switch (action.type) {
+        case ActionTypes.ADD_CAMPSITES:
+            return {...state, isLoading: false, errMess: null, campsites: action.payload};
+        case ActionTypes.CAMPSITES_LOADING:
+            return {...state, isLoading: true, errMess: null, campsites: []};
+        case ActionTypes.CAMPSITES_FAILED:
+            return {...state, isLoading: false, errMess: action.payload};
         default:
-        // return state to the store 
             return state;
     }
 };
+
