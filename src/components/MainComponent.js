@@ -10,6 +10,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect} from 'react-redux';
 import About from './AboutComponent';
 import { Connect } from 'react-redux';
+import { actions } from 'react-redux-form';
 import { addComment, fetchCampsites } from '../redux/ActionCreators';
 
 // get the state from from redux by setup the map state to props
@@ -29,7 +30,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
 	addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text)),
-    fetchCampsites: () => (fetchCampsites())
+    fetchCampsites: () => (fetchCampsites()),
+	// this is tthe value for a function, we use the model name the setup for the entire form (feedbackForm in configureStore.js)
+	// pass that reset feedback form function as a prop in (Route)
+	resetFeedbackForm: () => (actions.reset('feedbackForm'))
 };
 
 // set the local state in App.js so we have data from campsites.js inside App.js
@@ -75,7 +79,7 @@ class Main extends Component {
 					{/* render is for passing the this.state. */}
 					<Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
 					<Route path='/directory/:campsiteId' component={CampsiteWithId} />
-					<Route exact path='/contactus' component={Contact} />
+					<Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} /> } />
 					{/* Update MainComponent to integrate the AboutComponent into the single page application. */}
 					<Route exact path='/aboutus' render={() => <About partners={this.props.partners} />} />
 					<Redirect to ='/Home' /> 
