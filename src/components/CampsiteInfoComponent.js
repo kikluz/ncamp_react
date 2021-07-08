@@ -1,14 +1,13 @@
 import React from "react";
 import { Component } from 'react';
-
 import { 
 	Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
 	ModalHeader, ModalBody, BreadcrumbItem, Button, Modal, Form, FormGroup, Label, Input  
 } from 'reactstrap';
-
 import { Control, LocalForm, Errors } from  'react-redux-form';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 // Test from branch git week_5
 
@@ -34,7 +33,7 @@ function RenderCampsite({ campsite }) {
 	return (
 		<div className="col-md-5 m-1">
 			<Card>
-				<CardImg top src={campsite.image} alt={campsite.name} />
+				<CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
 				<CardBody>
 					<CardTitle>{campsite.name}</CardTitle>
 					<CardText>{campsite.description}</CardText>
@@ -133,7 +132,7 @@ function CampsiteInfo(props) {
         };
 
         this.toggleModal = this.toggleModal.bind(this);
-		this.handleSumit = this.handleSumit.bind(this)
+		this.handleSumit = this.handleSumit.bind(this);
     }
 
     // creat a method for toggleModal, bind method in the constructor

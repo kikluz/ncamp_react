@@ -1,20 +1,19 @@
 import * as ActionTypes from './ActionTypes';
 
-export const Promotions = (state = {isLoading: true,
-                            
-                                    errMess: null,    
-                                    promotion: []}, action) => {
-
+export const Promotions = (state = { isLoading: true,
+                                        errMess: null,
+                                        promotions: [] }, action) => {
     switch (action.type) {
         case ActionTypes.ADD_PROMOTIONS:
-            return {...state, isLoading: flase, errMess: null, promotions: action.payload};
+            return {...state, isLoading: false, errMess: null, promotions: action.payload};
 
         case ActionTypes.PROMOTIONS_LOADING:
-            return {...state, isLoading: true, errMess: null, promotion: []};
+            return {...state, isLoading: true, errMess: null, promotions: []}
 
-        case  ActionTypes.PROMOTIONS_FAILED:
-            return {...state, isLoading: false, errMess: action.payload} 
+        case ActionTypes.PROMOTIONS_FAILED:
+            return {...state, isLoading: false, errMess: action.payload};
+            
         default:
             return state;
-    }
+      }
 };
