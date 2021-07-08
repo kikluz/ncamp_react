@@ -10,7 +10,7 @@ import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect} from 'react-redux';
 import { actions } from 'react-redux-form';
-import { addComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
+import { postComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
 
 // get the state from from redux by setup the map state to props
 // with take the state as an arguement
@@ -28,7 +28,7 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = {
-	addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text)),
+	postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text)),
     fetchCampsites: () => (fetchCampsites()),
 	// this is tthe value for a function, we use the model name the setup for the entire form (feedbackForm in configureStore.js)
 	// pass that reset feedback form function as a prop in (Route)
@@ -71,7 +71,7 @@ class Main extends Component {
 					errMess={this.props.campsites.errMess}
 					comments={this.props.comments.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
 					commentsErrMess={this.props.comments.errMess}
-					addComment={this.props.addComment}
+					postComment={this.props.postComment}
                 />
             );
         };  
