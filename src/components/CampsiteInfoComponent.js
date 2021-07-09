@@ -23,9 +23,9 @@ const maxLength = len => val => !val || (val.length <= len);
 // wraps a function in a function, returns true is value, value greater or equal to the minimum
 const minLength = len => val => val && ( val.length >= len);
 // check the value is number, turn value into a number,  return NaN if isnot 
-const isNumber = val => !isNaN(+val); 
+// const isNumber = val => !isNaN(+val); 
 // check for a valid email 
-const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+// const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 
 
@@ -34,10 +34,10 @@ function RenderCampsite({ campsite }) {
 	return (
 		<div className="col-md-5 m-1">
 			<FadeTransform 
-        in 
-        transformProps={{
-            exitTransform: "scale(0.5) translateY(50%)"
-        }}>
+        		in 
+				transformProps={{
+					exitTransform: "scale(0.5) translateY(50%)"
+				}}>
 				<Card>
 					<CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
 					<CardBody>

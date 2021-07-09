@@ -12,6 +12,7 @@ import { connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 import { postComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { FadeTransform } from 'react-animation-components';
 // get the state from from redux by setup the map state to props
 // with take the state as an arguement
 
@@ -51,13 +52,13 @@ class Main extends Component {
 		const HomePage = () => {
 			return (
 				<Home 
-				campsite={this.props.campsites.campsites.filter(campsite => campsite.featured)[0]}
-				campsitesLoading={this.props.campsites.isLoading}
-				campsitesErrMess={this.props.campsites.errMess}
-				promotion={this.props.promotions.promotions.filter(promotion => promotion.featured)[0]}
-				promotionLoading={this.props.promotions.isLoading}
-				promotionErrMess={this.props.promotions.errMess}
-				partner={this.props.partners.filter(partner => partner.featured)[0]}
+					campsite={this.props.campsites.campsites.filter(campsite => campsite.featured)[0]}
+					campsitesLoading={this.props.campsites.isLoading}
+					campsitesErrMess={this.props.campsites.errMess}
+					promotion={this.props.promotions.promotions.filter(promotion => promotion.featured)[0]}
+					promotionLoading={this.props.promotions.isLoading}
+					promotionErrMess={this.props.promotions.errMess}
+					partner={this.props.partners.filter(partner => partner.featured)[0]}
 
 				/>
 			);
