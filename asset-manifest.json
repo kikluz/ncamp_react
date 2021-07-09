@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/kikluz/ncamp_react/static/css/main.a982ebd6.chunk.css",
+    "main.js": "/kikluz/ncamp_react/static/js/main.f81fc60f.chunk.js",
+    "main.js.map": "/kikluz/ncamp_react/static/js/main.f81fc60f.chunk.js.map",
+    "runtime-main.js": "/kikluz/ncamp_react/static/js/runtime-main.889452bf.js",
+    "runtime-main.js.map": "/kikluz/ncamp_react/static/js/runtime-main.889452bf.js.map",
+    "static/css/2.39f45463.chunk.css": "/kikluz/ncamp_react/static/css/2.39f45463.chunk.css",
+    "static/js/2.af8ef973.chunk.js": "/kikluz/ncamp_react/static/js/2.af8ef973.chunk.js",
+    "static/js/2.af8ef973.chunk.js.map": "/kikluz/ncamp_react/static/js/2.af8ef973.chunk.js.map",
+    "static/js/3.3d4c31f8.chunk.js": "/kikluz/ncamp_react/static/js/3.3d4c31f8.chunk.js",
+    "static/js/3.3d4c31f8.chunk.js.map": "/kikluz/ncamp_react/static/js/3.3d4c31f8.chunk.js.map",
+    "index.html": "/kikluz/ncamp_react/index.html",
+    "static/css/2.39f45463.chunk.css.map": "/kikluz/ncamp_react/static/css/2.39f45463.chunk.css.map",
+    "static/css/main.a982ebd6.chunk.css.map": "/kikluz/ncamp_react/static/css/main.a982ebd6.chunk.css.map",
+    "static/js/2.af8ef973.chunk.js.LICENSE.txt": "/kikluz/ncamp_react/static/js/2.af8ef973.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.css": "/kikluz/ncamp_react/static/media/fontawesome-webfont.f691f37e.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.889452bf.js",
+    "static/css/2.39f45463.chunk.css",
+    "static/js/2.af8ef973.chunk.js",
+    "static/css/main.a982ebd6.chunk.css",
+    "static/js/main.f81fc60f.chunk.js"
+  ]
+}
