@@ -2,7 +2,7 @@ import React from "react";
 import { Component } from 'react';
 import { 
 	Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
-	ModalHeader, ModalBody, BreadcrumbItem, Button, Modal, Form, FormGroup, Label, Input  
+	ModalHeader, ModalBody, BreadcrumbItem, Button, Modal,  Label  
 } from 'reactstrap';
 import { Control, LocalForm, Errors } from  'react-redux-form';
 import { Link } from 'react-router-dom';
@@ -211,7 +211,7 @@ function CampsiteInfo(props) {
                     </ModalBody>
                 </Modal>
 
-				<Button outline onClick={this.toggleModal} outline color="secondary" type="submit" ClassName="outline">
+				<Button onClick={this.toggleModal} outline color="secondary" type="submit" ClassName="outline">
 			   		<i className="fa fa-pencil fa-lg" /> Submit Comment
 		  		 </Button>
 

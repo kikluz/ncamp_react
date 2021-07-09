@@ -12,7 +12,7 @@ import { connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 import { postComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { FadeTransform } from 'react-animation-components';
+// import { FadeTransform } from 'react-animation-components';
 // get the state from from redux by setup the map state to props
 // with take the state as an arguement
 
