@@ -174,11 +174,26 @@ export const addPromotions = promotions => ({
 // that will fetch the partners data from the server and update the Redux store
 // thunk action creator with 2 doble arrow function, dispatch argument passed into the inner arrow function
 export const fetchPartners = () => dispatch => { 
-    dispatch(partnersLoading());   
-    return fetch(baseUrl + 'partners')
+    dispatch(partnersLoading()); 
 
+    return fetch(baseUrl + 'partners')
+        .then(response => {
+            if(response.ok) {
+                return response;
+            }else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        }
+    )
         .then(response => response.json())
         .then(partners => dispatch(addPartners(partners)))
+        .catch(error => dispatch(partnersFailed(error.message)));
 };
 
 // Taks 1 add  action creators 
