@@ -66,6 +66,8 @@ handleSubmit(values){
         // use resetFeedbackForm as a method of this props 
         // this will  will reset to initial values  
         this.props.resetFeedbackForm();
+
+        // TASK 2  week5 call postFeedback, passing it the values object
         this.props.postFeedback(values)
         // we stop refresh the entire page, need to bind this event in the custroctor 
         // removed event.preventDefault(); so redux will handle for us 

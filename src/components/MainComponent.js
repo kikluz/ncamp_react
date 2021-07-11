@@ -9,9 +9,11 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+
 // React-Redux Stuff
 import { connect} from 'react-redux';
 import { actions } from 'react-redux-form';
+
 // Action 
 import { 
 	postComment, addComment, fetchCampsites, fetchComments, 
@@ -44,6 +46,7 @@ const mapDispatchToProps = {
 	fetchPromotions: () => (fetchPromotions()),
 	fetchPartners: () => (fetchPartners()),
 
+// TASK 2  week5 Add postFeedback to mapDispatchToProps.
 	postComment: (campsiteId, rating, author, text) => postComment(campsiteId, rating, author, text),
     postFeedback: (feedback) => postFeedback(feedback)
 };

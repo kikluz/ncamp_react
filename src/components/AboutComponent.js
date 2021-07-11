@@ -1,5 +1,6 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
+import { Fade, Stagger } from 'react-animation-components';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
 // import { Partners } from '../redux/partners';
@@ -68,7 +69,7 @@ function PartnerList(props) {
             </div>
         );
     }
-// Under this, outside of any if statement, return a div with the className of "col mt-4".
+// return a div with the className of "col mt-4".
 // Inside this div, put a Media element with the "list" attribute. Inside this, embed the partners variable.
     return (
         <div className="col mt-4">
@@ -135,7 +136,12 @@ function About(props) {
                 <div className="col-12">
                     <h3>Community Partners</h3>
                 </div>
-               <PartnerList partners={props.partners}/>
+                {/* render the PartnerList component, and pass it the prop "partners={props.partners}". */}
+                <Stagger in>
+                    <Fade in>
+                        <PartnerList partners={props.partners}/>
+                    </Fade>
+                </Stagger>
             </div>
         </div>
     );

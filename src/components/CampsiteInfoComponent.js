@@ -55,7 +55,7 @@ function RenderComments({comments, postComment, campsiteId}) {
 		return (
 			<div classNam="col-md5 m-1">
 				<h4>Comments</h4>
-				<Stagger in>
+				<Stagger in >
 					{comments.map(comment => {
 						return (
 							
