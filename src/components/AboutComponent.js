@@ -135,7 +135,7 @@ function About(props) {
                 <div className="col-12">
                     <h3>Community Partners</h3>
                 </div>
-               <PartnerList partner={props.partners}/>
+               <PartnerList partners={props.partners}/>
             </div>
         </div>
     );
