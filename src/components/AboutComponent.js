@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
-import { Partners } from '../redux/partners';
+// import { Partners } from '../redux/partners';
 import { Loading } from './LoadingComponent';
 
 // In the RenderPartner component, update the src attribute for the Media object to use the baseUrl
@@ -37,7 +37,9 @@ function RenderPartner({partner}) {
 // the className of "col". Inside this div should be an h4 element that contains the error message.
 // -----------------------------------------------------------------------------------
 function PartnerList(props) {
-    const partners = props.partners.map(partner => {
+
+    const partners = props.partners.partners.map(partner => {
+
         return (
             <Media tag="li" key={partner.id}> 
                 <RenderPartner partner={partner} />
@@ -64,7 +66,7 @@ function PartnerList(props) {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 // Under this, outside of any if statement, return a div with the className of "col mt-4".
 // Inside this div, put a Media element with the "list" attribute. Inside this, embed the partners variable.
