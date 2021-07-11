@@ -7,12 +7,18 @@ import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+// React-Redux Stuff
 import { connect} from 'react-redux';
 import { actions } from 'react-redux-form';
-import { postComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-// import { FadeTransform } from 'react-animation-components';
+// Action 
+import { 
+	postComment, addComment, fetchCampsites, fetchComments, 
+	fetchPromotions, fetchPartners, postFeedback 
+} from '../redux/ActionCreators';
+
+
 // get the state from from redux by setup the map state to props
 // with take the state as an arguement
 
@@ -29,13 +35,17 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = {
-	postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text)),
+	addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text)),
     fetchCampsites: () => (fetchCampsites()),
-	// this is tthe value for a function, we use the model name the setup for the entire form (feedbackForm in configureStore.js)
+	// this is the value for a function, we use the model name the setup for the entire form (feedbackForm in configureStore.js)
 	// pass that reset feedback form function as a prop in (Route)
 	resetFeedbackForm: () => (actions.reset('feedbackForm')),
 	fetchComments: () => (fetchComments()),
-	fetchPromotions: () => (fetchPromotions())
+	fetchPromotions: () => (fetchPromotions()),
+	fetchPartners: () => (fetchPartners()),
+
+	postComment: (campsiteId, rating, author, text) => postComment(campsiteId, rating, author, text),
+    postFeedback: (feedback) => postFeedback(feedback)
 };
 
 // set the local state in App.js so we have data from campsites.js inside App.js
@@ -45,10 +55,12 @@ class Main extends Component {
         this.props.fetchCampsites();
 		this.props.fetchComments();
 		this.props.fetchPromotions();
+		this.props.fetchPartners();
     }
 
 	render(){
-
+{/*update the way that the partners data is passed to the Home component 
+pass the isLoading and errMess properties of the partners object to the Home component.*/} 
 		const HomePage = () => {
 			return (
 				<Home 
@@ -58,7 +70,10 @@ class Main extends Component {
 					promotion={this.props.promotions.promotions.filter(promotion => promotion.featured)[0]}
 					promotionLoading={this.props.promotions.isLoading}
 					promotionErrMess={this.props.promotions.errMess}
-					partner={this.props.partners.filter(partner => partner.featured)[0]}
+
+					partner={this.props.partners.partners.filter(partner => partner.featured)[0]}
+					partnerLoading={this.props.partners.isLoading}
+                    partnerErrMess={this.props.partners.errMess}
 
 				/>
 			);
@@ -88,7 +103,11 @@ class Main extends Component {
 							{/* render is for passing the this.state. */}
 							<Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
 							<Route path='/directory/:campsiteId' component={CampsiteWithId} />
-							<Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} /> } />
+							<Route exact path='/contactus' render={() => 
+							<Contact 
+								resetFeedbackForm={this.props.resetFeedbackForm} 
+								postFeedback={this.props.postFeedback} /> }
+							 />
 							{/* Update MainComponent to integrate the AboutComponent into the single page application. */}
 							<Route exact path='/aboutus' render={() => <About partners={this.props.partners} />} />
 							<Redirect to ='/Home' /> 

@@ -168,3 +168,56 @@ export const addPromotions = promotions => ({
     type: ActionTypes.ADD_PROMOTIONS,
     payload: promotions
 });
+
+
+// Taks 1 add  action creators dd a thunked action creator (fetchPartners) 
+// that will fetch the partners data from the server and update the Redux store
+// thunk action creator with 2 doble arrow function, dispatch argument passed into the inner arrow function
+export const fetchPartners = () => dispatch => { 
+    dispatch(partnersLoading());   
+    return fetch(baseUrl + 'partners')
+
+        .then(response => response.json())
+        .then(partners => dispatch(addPartners(partners)))
+};
+
+// Taks 1 add  action creators 
+export const partnersLoading = () => ({
+    type: ActionTypes.PARTNERS_LOADING
+});
+
+export const partnersFailed = (errMess) => ({
+    type: ActionTypes.PARTNERS__FAILED,
+    payload: errMess
+});
+
+export const addPartners = (partners) => ({
+    type: ActionTypes.ADD_PARTNERS,
+    payload: partners
+});
+
+// feedback
+export const postFeedback = (feedback) => (dispatch) => {
+    
+    return fetch(baseUrl + 'feedback', {
+        method: "POST",
+        body: JSON.stringify(feedback),
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+        .then(response => {
+            if (response.ok) {
+                return alert("Thank you for you feedback")
+            } else {
+                const err = new Error(`${response.status}: ${response.statusText}`)
+            }
+        },
+    )
+        .then(response => response.json())
+        .then(response => dispatch(addComment(response)))
+        .catch(error => {
+            console.log('post comment', error.message);
+            alert('Your comment could not be posted\nError: ' + error.message);
+    });
+};
